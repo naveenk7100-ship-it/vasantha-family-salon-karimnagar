@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Users, ShieldCheck, Heart, Award, Smile, Check } from 'lucide-react';
+import { Sparkles, Users, ShieldCheck, Heart, Award, Check } from 'lucide-react';
 
 export const ExperienceSection: React.FC = () => {
   const pillars = [
@@ -7,25 +7,25 @@ export const ExperienceSection: React.FC = () => {
       icon: Users,
       title: "Truly Family-Centric Atmosphere",
       telugu: "కుటుంబమంతా కలిసి సేవలు పొందే వాతావరణం",
-      desc: "Thoughtfully zoned spaces ensuring privacy for women, focused sharp grooming for men, and an encouraging, cheerful environment for children."
+      desc: "Thoughtfully arranged spaces ensuring privacy for women, focused sharp grooming for men, and an encouraging, cheerful environment for children."
     },
     {
       icon: ShieldCheck,
-      title: "Hospital-Grade Hygiene Protocol",
+      title: "Meticulous Cleanliness & Tool Care",
       telugu: "పూర్తి శానిటైజేషన్ & పరిశుభ్రత",
-      desc: "Every scissor, trimmer blade, and comb undergoes autoclave/UV sterilization between every client. Disposable neck strips and single-use capes are standard."
+      desc: "Every scissor, trimmer blade, and comb is thoroughly sanitized between clients. Fresh neck strips and clean capes are prepared for every guest."
     },
     {
       icon: Award,
-      title: "Experienced Master Stylists",
+      title: "Skilled & Attentive Hair Stylists",
       telugu: "అనుభవజ్ఞులైన నిపుణుల సేవలు",
-      desc: "Our hair artists undergo regular masterclasses in modern fades, hair texture management, balayage color harmony, and botanical facial therapies."
+      desc: "Our hair artists focus on modern fades, hair texture management, balayage color harmony, and revitalizing botanical facial therapies."
     },
     {
       icon: Heart,
-      title: "Scalp & Skin Health First",
-      telugu: "రసాయన రహిత & సురక్షిత సంరక్షణ",
-      desc: "We prioritize hair vitality above all. We choose low-ammonia colors, organic argan infusions, and dermatologically tested skincare products."
+      title: "Scalp & Skin Vitality First",
+      telugu: "సురక్షిత & నాణ్యమైన సంరక్షణ",
+      desc: "We prioritize natural hair health. We recommend gentle, low-ammonia colors, nourishing argan oil infusions, and skin-friendly preparations."
     }
   ];
 
@@ -48,7 +48,7 @@ export const ExperienceSection: React.FC = () => {
           </h2>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Personal grooming is not just a quick haircut; it's a confidence ritual. We bring premium urban salon standards to Karimnagar with genuine care and warmth.
+            Personal grooming is not just a quick haircut; it's a confidence ritual. We bring modern salon care to Karimnagar with genuine hospitality and warmth.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export const ExperienceSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="salon-card p-6 flex flex-col justify-between space-y-4 hover:border-[#D4AF37]/50"
+                className="salon-card p-6 flex flex-col justify-between space-y-4 hover:border-[#D4AF37]/50 text-left"
               >
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E5C378]/20 to-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center">

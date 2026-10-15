@@ -13,10 +13,11 @@ export const BUSINESS_INFO: BusinessDetails = {
   googleMapsSearchUrl: "https://www.google.com/maps/search/Vasantha+Family+Salon+Karimnagar",
   status: "active-search-listing",
   isPhoneVerified: false,
-  typicalHours: "Daily 9:30 AM – 9:00 PM (Standard Karimnagar Salon Timings)",
-  addressNote: "Karimnagar, Telangana. Exact street address and landmark to be confirmed by salon management."
+  typicalHours: "Daily 9:30 AM – 9:00 PM (Standard salon schedule in Karimnagar)",
+  addressNote: "Karimnagar, Telangana - 505001. Listed on Google Maps. Exact street address and landmark to be confirmed directly upon appointment or visit."
 };
 
+/* 9 Completely Unique Service Images (No overlap with Gallery, Hero, or About) */
 export const SERVICES: ServiceItem[] = [
   {
     id: "mens-haircut-styling",
@@ -25,7 +26,7 @@ export const SERVICES: ServiceItem[] = [
     category: "grooming",
     categoryLabel: "Men's Grooming",
     durationMinutes: 30,
-    image: getImgUrl("beard-grooming.jpg"),
+    image: getImgUrl("service-mens-haircut.jpg"),
     description: "Custom tailored haircut aligned with your face structure, hair texture, and personal style, finished with soothing head wash and matte/shine styling.",
     features: [
       "Face shape analysis & texture check",
@@ -43,7 +44,7 @@ export const SERVICES: ServiceItem[] = [
     category: "grooming",
     categoryLabel: "Men's Grooming",
     durationMinutes: 25,
-    image: getImgUrl("beard-grooming.jpg"),
+    image: getImgUrl("service-beard-sculpt.jpg"),
     description: "Sculpted beard shaping with razor-sharp cheek line definition, warm steam towel treatment, and nourishing organic beard oil massage.",
     features: [
       "Precision razor edge alignment",
@@ -61,7 +62,7 @@ export const SERVICES: ServiceItem[] = [
     category: "hair",
     categoryLabel: "Women's Hair",
     durationMinutes: 45,
-    image: getImgUrl("haircut-women.jpg"),
+    image: getImgUrl("service-womens-haircut.jpg"),
     description: "Layered cuts, feathering, curtain bangs, or modern bobs tailored to enhance natural hair bounce and volume, followed by a thermal blowout.",
     features: [
       "Hair texture & density assessment",
@@ -79,7 +80,7 @@ export const SERVICES: ServiceItem[] = [
     category: "spa",
     categoryLabel: "Hair Spa",
     durationMinutes: 60,
-    image: getImgUrl("hair-spa.jpg"),
+    image: getImgUrl("service-hair-spa.jpg"),
     description: "Rejuvenating salon therapy designed to combat frizz, chemical dryness, and environmental damage with deep follicle conditioning and acupressure scalp massage.",
     features: [
       "Deep pore scalp detoxification",
@@ -97,7 +98,7 @@ export const SERVICES: ServiceItem[] = [
     category: "skin",
     categoryLabel: "Skin Care",
     durationMinutes: 50,
-    image: getImgUrl("facial-treatment.jpg"),
+    image: getImgUrl("service-skin-facial.jpg"),
     description: "Gentle multi-step skin rejuvenation including ultrasonic cleansing, botanical exfoliation, vitamin pack, and lymphatic drainage face massage.",
     features: [
       "Deep pore unclogging & blackhead extraction",
@@ -115,7 +116,7 @@ export const SERVICES: ServiceItem[] = [
     category: "skin",
     categoryLabel: "Skin Care",
     durationMinutes: 35,
-    image: getImgUrl("facial-treatment.jpg"),
+    image: getImgUrl("service-detan-polish.jpg"),
     description: "Clinically formulated milk & kojic therapy to dissolve sun tanning, hyperpigmentation, and daily dirt buildup safely without harsh bleach.",
     features: [
       "Gentle AHA-infused de-tan application",
@@ -133,7 +134,7 @@ export const SERVICES: ServiceItem[] = [
     category: "kids",
     categoryLabel: "Kids Styling",
     durationMinutes: 20,
-    image: getImgUrl("kids-styling.jpg"),
+    image: getImgUrl("service-kids-haircut.jpg"),
     description: "Patience-focused, gentle haircut experience crafted especially for boys and girls in a warm, welcoming family environment.",
     features: [
       "Child-safe rounded shears and quiet clippers",
@@ -151,7 +152,7 @@ export const SERVICES: ServiceItem[] = [
     category: "hair",
     categoryLabel: "Women's Hair",
     durationMinutes: 90,
-    image: getImgUrl("hair-color.jpg"),
+    image: getImgUrl("service-hair-color.jpg"),
     description: "Ammonia-conscious rich tones, natural grey coverage, or trendy sun-kissed streaks blended with bond-protecting plex treatment.",
     features: [
       "Color shade consultation & strand test",
@@ -169,7 +170,7 @@ export const SERVICES: ServiceItem[] = [
     category: "bridal",
     categoryLabel: "Bridal & Events",
     durationMinutes: 120,
-    image: getImgUrl("styling-chairs.jpg"),
+    image: getImgUrl("service-bridal-makeover.jpg"),
     description: "Comprehensive head-to-toe grooming curation for brides, grooms, and family members attending weddings, receptions, and festivals in Karimnagar.",
     features: [
       "Complete hair spa & customized styling",
@@ -182,14 +183,15 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
+/* 9 Completely Unique Gallery Images (No overlap with Services, Hero, or About) */
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "gallery-1",
-    title: "Luxury Styling Stations",
+    title: "Modern Styling Stations",
     teluguTitle: "స్టైలింగ్ స్టేషన్స్",
     category: "interior",
     categoryLabel: "Salon Interior",
-    image: getImgUrl("styling-chairs.jpg"),
+    image: getImgUrl("gallery-styling-chairs.jpg"),
     description: "Hydraulic designer chairs, expansive illuminated mirrors, and spacious styling bays designed for relaxed personal attention."
   },
   {
@@ -198,70 +200,70 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     teluguTitle: "హెయిర్ వాష్ & స్పా లాంజ్",
     category: "spa",
     categoryLabel: "Hair Spa",
-    image: getImgUrl("wash-lounge.jpg"),
+    image: getImgUrl("gallery-wash-lounge.jpg"),
     description: "Ergonomic wash basins with gentle water pressure control and soothing ambient lighting for restful hair wash rituals."
   },
   {
     id: "gallery-3",
-    title: "Designer Women's Haircut & Blowout",
+    title: "Artisan Haircut & Volumizing Blowout",
     teluguTitle: "మహిళల హెయిర్ స్టైలింగ్",
     category: "styling",
     categoryLabel: "Hair Styling",
-    image: getImgUrl("haircut-women.jpg"),
+    image: getImgUrl("gallery-blowout-styling.jpg"),
     description: "Precision shear feathering, texture balancing, and bouncy thermal blowouts tailored to individual face geometry."
   },
   {
     id: "gallery-4",
-    title: "Royal Beard Contouring",
-    teluguTitle: "బియర్డ్ గ్రూమింగ్",
+    title: "Royal Barber Grooming Bay",
+    teluguTitle: "బియర్డ్ గ్రూమింగ్ బే",
     category: "grooming",
     categoryLabel: "Men's Grooming",
-    image: getImgUrl("beard-grooming.jpg"),
-    description: "Crisp razor lines, beard conditioning oils, and warm herbal towels for gentlemen seeking a sharp, executive look."
+    image: getImgUrl("gallery-barber-chair.jpg"),
+    description: "Dedicated men's styling chair with vintage aesthetic, hot towel steamer, and sharp beard grooming tools."
   },
   {
     id: "gallery-5",
-    title: "Balayage & Dimensional Color",
+    title: "Creative Balayage & Foil Highlights",
     teluguTitle: "క్రియేటివ్ హెయిర్ కలర్",
     category: "styling",
     categoryLabel: "Color Studio",
-    image: getImgUrl("hair-color.jpg"),
+    image: getImgUrl("gallery-color-foils.jpg"),
     description: "Expert foil placement, seamless color transitions, and conditioning toners that preserve natural hair vitality."
   },
   {
     id: "gallery-6",
-    title: "Restorative Scalp & Hair Masque",
+    title: "Deep Follicle Scalp Therapy",
     teluguTitle: "డీప్ కండిషనింగ్ స్పా",
     category: "spa",
     categoryLabel: "Hair Spa",
-    image: getImgUrl("hair-spa.jpg"),
+    image: getImgUrl("gallery-scalp-spa.jpg"),
     description: "Intense argan and keratin scalp rejuvenation that hydrates dry, frizzy strands and promotes scalp wellness."
   },
   {
     id: "gallery-7",
-    title: "Radiance Facial & Skin Suite",
+    title: "Private Aesthetic Skin Treatment Suite",
     teluguTitle: "స్కిన్ & ఫేషియల్ కేర్",
     category: "spa",
     categoryLabel: "Skin Suite",
-    image: getImgUrl("facial-treatment.jpg"),
+    image: getImgUrl("gallery-facial-suite.jpg"),
     description: "Private aesthetic treatment suite for deep pore cleansing, botanical masks, and ultrasonic skin smoothing."
   },
   {
     id: "gallery-8",
-    title: "Child-Friendly Haircut Experience",
-    teluguTitle: "చిన్నారుల సంరక్షణ",
+    title: "Family & Youth Styling Care",
+    teluguTitle: "కుటుంబ & చిన్నారుల సంరక్షణ",
     category: "interior",
-    categoryLabel: "Kids Corner",
-    image: getImgUrl("kids-styling.jpg"),
-    description: "Warm, cheerful, and patient haircuts for kids with rounded safety shears and stress-free care."
+    categoryLabel: "Family Care",
+    image: getImgUrl("gallery-family-moment.jpg"),
+    description: "Cheerful, patient styling for teens and children ensuring an enjoyable visit for the whole family."
   },
   {
     id: "gallery-9",
-    title: "Sterilized Professional Toolkit",
-    teluguTitle: "పరిశుభ్రత & శానిటైజేషన్",
+    title: "Sterilized Professional Shear Toolkit",
+    teluguTitle: "పరిశుభ్రమైన ఉపకరణాలు",
     category: "interior",
-    categoryLabel: "Hygiene Standard",
-    image: getImgUrl("salon-tools.jpg"),
-    description: "Hospital-grade UV sterilization for scissors, clipper guards, and combs, paired with single-use client capes."
+    categoryLabel: "Care Standard",
+    image: getImgUrl("gallery-shears-tools.jpg"),
+    description: "Carefully sanitized professional shears, precision combs, and premium organic hair serums."
   }
 ];

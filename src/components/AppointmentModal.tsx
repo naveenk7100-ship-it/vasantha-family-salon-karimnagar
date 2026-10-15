@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, Clock, Scissors, Check, Sparkles, User, Phone, MessageSquare, Send, Copy, Navigation, MapPin } from 'lucide-react';
+import { X, Calendar, Clock, Scissors, Check, Sparkles, User, Phone, MessageSquare, Send, Copy, Navigation, MapPin, AlertCircle } from 'lucide-react';
 import { SERVICES, BUSINESS_INFO } from '../data/salonData';
 import confetti from 'canvas-confetti';
 
@@ -16,6 +16,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   selectedServiceIds,
   onToggleService
 }) => {
+  const today = new Date().toISOString().split('T')[0];
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState(() => {
@@ -26,6 +27,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   const [slot, setSlot] = useState<'morning' | 'afternoon' | 'evening'>('morning');
   const [genderPref, setGenderPref] = useState<'men' | 'women' | 'any'>('any');
   const [notes, setNotes] = useState('');
+  const [validationError, setValidationError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -46,7 +48,23 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
+    setValidationError('');
+
+    if (!name.trim()) {
+      setValidationError('Please enter your full name.');
+      return;
+    }
+
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      setValidationError('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
+    if (date < today) {
+      setValidationError('Please select a date from today onwards.');
+      return;
+    }
 
     // Trigger celebration
     confetti({
@@ -59,7 +77,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     setSubmitted(true);
   };
 
-  const formattedBookingText = `Hello Vasantha Family Salon, Karimnagar! 👋\n\nI would like to request an appointment:\n• Name: ${name}\n• Phone: ${phone}\n• Preferred Date: ${date}\n• Time Window: ${slot.toUpperCase()}\n• Services: ${selectedServices.map((s) => s.name).join(', ') || 'Custom Consultation'}\n• Preference: ${genderPref.toUpperCase()}\n• Notes: ${notes || 'None'}\n\nPlease confirm availability!`;
+  const formattedBookingText = `Hello Vasantha Family Salon, Karimnagar! 👋\n\nI would like to request a salon appointment:\n• Client Name: ${name}\n• Contact Number: ${phone}\n• Preferred Date: ${date}\n• Time Window: ${slot.toUpperCase()}\n• Selected Rituals: ${selectedServices.map((s) => s.name).join(', ') || 'General Consultation'}\n• Preference: ${genderPref.toUpperCase()}\n• Special Notes: ${notes || 'None'}\n\nPlease confirm availability for Karimnagar salon!`;
 
   const handleCopyText = () => {
     navigator.clipboard.writeText(formattedBookingText);
@@ -149,7 +167,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-whatsapp py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full btn-whatsapp py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
                   Send Reservation on WhatsApp
@@ -168,7 +186,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   href={BUSINESS_INFO.googleMapsSearchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-gold-outline py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2"
+                  className="w-full btn-gold-outline py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MapPin className="w-4 h-4 text-[#D4AF37]" />
                   Open Salon Location on Google Maps
@@ -188,6 +206,14 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5 text-left">
               
+              {/* Validation error display */}
+              {validationError && (
+                <div className="p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{validationError}</span>
+                </div>
+              )}
+
               {/* Client Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -201,7 +227,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       required
                       placeholder="e.g. Ramesh Reddy"
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        if (validationError) setValidationError('');
+                      }}
                       className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
@@ -218,7 +247,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       required
                       placeholder="e.g. 98480 12345"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        if (validationError) setValidationError('');
+                      }}
                       className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
@@ -267,6 +299,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   <input
                     type="date"
                     required
+                    min={today}
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:outline-none focus:border-[#D4AF37]"

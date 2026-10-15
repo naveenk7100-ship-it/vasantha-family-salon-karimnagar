@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scissors, ShieldCheck, Heart, Sparkles, CheckCircle2, Clock, Users } from 'lucide-react';
+import { Scissors, ShieldCheck, Heart, Sparkles, Clock, Users } from 'lucide-react';
 import { getImgUrl } from '../data/salonData';
 
 export const AboutSection: React.FC = () => {
@@ -11,7 +11,7 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
-          {/* Left Column: Image Composition */}
+          {/* Left Column: Image Composition with 2 completely distinct images */}
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-lg lg:max-w-none">
               
@@ -19,8 +19,8 @@ export const AboutSection: React.FC = () => {
               <div className="gold-gradient-border shadow-2xl rounded-2xl overflow-hidden">
                 <div className="gold-gradient-inner p-2 rounded-2xl">
                   <img
-                    src={getImgUrl('styling-chairs.jpg')}
-                    alt="Vasantha Family Salon Interior Styling Chairs"
+                    src={getImgUrl('about-salon-ambience.jpg')}
+                    alt="Vasantha Family Salon Welcoming Lounge & Interior"
                     className="w-full h-[360px] sm:h-[420px] object-cover rounded-xl"
                     loading="lazy"
                   />
@@ -31,8 +31,8 @@ export const AboutSection: React.FC = () => {
               <div className="hidden sm:block absolute -bottom-8 -right-6 w-56 sm:w-64 gold-gradient-border shadow-2xl rounded-2xl overflow-hidden">
                 <div className="gold-gradient-inner p-1.5 rounded-2xl">
                   <img
-                    src={getImgUrl('salon-tools.jpg')}
-                    alt="Precision Sterilized Salon Equipment"
+                    src={getImgUrl('about-stylist-craft.jpg')}
+                    alt="Professional Hair Styling & Shear Precision"
                     className="w-full h-36 sm:h-44 object-cover rounded-xl"
                     loading="lazy"
                   />
@@ -45,8 +45,8 @@ export const AboutSection: React.FC = () => {
                   <Scissors className="w-5 h-5 text-[#E5C378]" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">Karimnagar Center</p>
-                  <p className="text-[10px] text-[#E5C378]">Family Hair & Beauty Care</p>
+                  <p className="text-xs font-bold text-white">Karimnagar Destination</p>
+                  <p className="text-[10px] text-[#E5C378]">Family Hair & Personal Care</p>
                 </div>
               </div>
 
@@ -70,11 +70,11 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              At <strong>Vasantha Family Salon</strong>, we believe personal grooming is a cornerstone of family confidence and well-being. Built to serve Karimnagar with urban salon sophistication, our doors welcome men, women, teenagers, and young kids into a calm, welcoming, and impeccably clean environment.
+              At <strong>Vasantha Family Salon</strong>, personal grooming is approached with care, patience, and family comfort. Established to offer Karimnagar residents modern salon artistry in a warm and welcoming space, we cater to men, women, teenagers, and young children alike.
             </p>
 
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-              Whether you are preparing for a milestone wedding ceremony, refreshing your signature haircut, or treating your scalp to an aromatic deep conditioning hair spa, our stylists take the time to consult, assess your hair texture, and recommend the best rituals without rushed cuts.
+              From contemporary textured fades and royal beard trims to layered women's blowouts and restorative scalp spas, our stylists listen carefully to your preferences before beginning.
             </p>
 
             {/* Core Commitments Checklist */}
@@ -82,40 +82,40 @@ export const AboutSection: React.FC = () => {
               <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-white">Autoclave Sterilization</p>
-                  <p className="text-[11px] text-slate-400">All shears & combs sanitized between every guest.</p>
+                  <p className="text-xs font-bold text-white">Thorough Sanitization</p>
+                  <p className="text-[11px] text-slate-400">Regular sterilization of combs & shears, with fresh single-use capes.</p>
                 </div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                 <Users className="w-4 h-4 text-[#E5C378] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-white">Dedicated Family Zones</p>
-                  <p className="text-[11px] text-slate-400">Private facial suites and child-safe chairs.</p>
+                  <p className="text-xs font-bold text-white">Dedicated Family Comfort</p>
+                  <p className="text-[11px] text-slate-400">Private treatment rooms for skincare and cheerful chairs for kids.</p>
                 </div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                 <Heart className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-white">Scalp & Hair Health</p>
-                  <p className="text-[11px] text-slate-400">Ammonia-conscious colors & nourishing argan oils.</p>
+                  <p className="text-xs font-bold text-white">Hair Vitality Focus</p>
+                  <p className="text-[11px] text-slate-400">Low-ammonia color tones and nourishing argan oil scalp masques.</p>
                 </div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-xs font-bold text-white">Daily Convenience</p>
-                  <p className="text-[11px] text-slate-400">Open 9:30 AM – 9:00 PM with walk-ins welcome.</p>
+                  <p className="text-xs font-bold text-white">Convenient Timings</p>
+                  <p className="text-[11px] text-slate-400">Open 9:30 AM – 9:00 PM Daily (Walk-ins & Appointments welcome).</p>
                 </div>
               </div>
             </div>
 
-            {/* Location reassurance */}
+            {/* Honest location disclaimer */}
             <div className="pt-2 text-xs text-slate-400 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>Proudly rooted in Karimnagar, Telangana • Dedicated to your family's style.</span>
+              <span>Karimnagar, Telangana. Listed on Google Maps • Dedicated to family care.</span>
             </div>
 
           </div>

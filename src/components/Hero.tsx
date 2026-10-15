@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Sparkles, Scissors, Users, HeartHandshake, ShieldCheck, ArrowRight, Clock, Star } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, Scissors, Users, HeartHandshake, ShieldCheck, ArrowRight, Clock } from 'lucide-react';
 import { BUSINESS_INFO, getImgUrl } from '../data/salonData';
 
 interface HeroProps {
@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             {/* Location Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#161D2B] border border-[#D4AF37]/30 text-xs font-semibold text-[#E5C378] shadow-inner shadow-black/60">
               <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Karimnagar Premium Family Salon</span>
+              <span>Karimnagar Family Salon</span>
               <span className="text-slate-500">•</span>
               <span className="text-slate-300 flex items-center gap-1">
                 <MapPin className="w-3 h-3 text-[#D4AF37]" />
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
             {/* Supporting Description */}
             <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Step into Karimnagar's premier salon destination where every generation receives personalized hair artistry, restorative scalp spas, beard sculpting, and rejuvenating skin care in an impeccably hygienic environment.
+              Step into Karimnagar's welcoming salon destination where every generation receives personalized hair artistry, restorative scalp spas, beard sculpting, and rejuvenating skin care in an impeccably clean environment.
             </p>
 
             {/* Primary Action Buttons */}
@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
               <a
                 href="#services"
-                className="btn-gold-outline px-6 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-2"
+                className="btn-gold-outline px-6 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-2 cursor-pointer"
               >
                 <Scissors className="w-4 h-4" />
                 Explore Services
@@ -68,10 +68,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                 href={BUSINESS_INFO.googleMapsSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/80 border border-slate-800 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-2"
+                className="px-5 py-3.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/80 border border-slate-800 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <MapPin className="w-4 h-4 text-[#D4AF37]" />
-                Directions
+                Google Maps
               </a>
             </div>
 
@@ -92,8 +92,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                   <Scissors className="w-4 h-4 text-[#E5C378]" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">Master Cuts</p>
-                  <p className="text-[10px] text-slate-400">Precision & Hair Spa</p>
+                  <p className="text-xs font-bold text-white">Hair Artistry</p>
+                  <p className="text-[10px] text-slate-400">Custom Cuts & Spa</p>
                 </div>
               </div>
 
@@ -102,15 +102,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">100% Sanitized</p>
-                  <p className="text-[10px] text-slate-400">Autoclave Clean Tools</p>
+                  <p className="text-xs font-bold text-white">Cleanliness</p>
+                  <p className="text-[10px] text-slate-400">Sanitized Stations</p>
                 </div>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: High-End Real Visual Showcase */}
+          {/* Right Column: High-End Real Visual Showcase with unique hero image */}
           <div className="lg:col-span-5 relative">
             <div className="gold-gradient-border shadow-2xl shadow-black/90">
               <div className="gold-gradient-inner p-3 rounded-2xl relative overflow-hidden group">
@@ -118,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                 {/* Main Hero Salon Image */}
                 <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-slate-900">
                   <img
-                    src={getImgUrl('hero-salon.jpg')}
+                    src={getImgUrl('hero-salon-main.jpg')}
                     alt="Vasantha Family Salon Ambiance and Styling Stations in Karimnagar"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                     <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#0E131F]/90 text-[#E5C378] border border-[#D4AF37]/30 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
                       <Sparkles className="w-3.5 h-3.5" />
-                      Premium Salon Suite
+                      Family Salon & Spa
                     </span>
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">
                       Open 9:30 AM – 9 PM
@@ -152,10 +152,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                     </p>
 
                     <div className="pt-2 flex items-center justify-between border-t border-slate-800 text-[10px] text-slate-400">
-                      <span>Walk-ins & Bookings</span>
+                      <span>Walk-ins & Reservations</span>
                       <button
                         onClick={onOpenBooking}
-                        className="text-[#E5C378] font-bold hover:underline flex items-center gap-1"
+                        className="text-[#E5C378] font-bold hover:underline flex items-center gap-1 cursor-pointer"
                       >
                         Reserve Slot →
                       </button>
@@ -167,14 +167,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               </div>
             </div>
 
-            {/* Floating Quality Badge */}
+            {/* Floating Location Badge */}
             <div className="hidden sm:flex absolute -bottom-6 -left-6 p-3.5 rounded-2xl bg-[#0E131F]/95 border border-[#D4AF37]/40 shadow-xl shadow-black/80 items-center gap-3 backdrop-blur-md">
               <div className="w-10 h-10 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center shrink-0">
                 <MapPin className="w-5 h-5 text-[#E5C378]" />
               </div>
               <div className="text-left">
                 <p className="text-xs font-bold text-white">Karimnagar, Telangana</p>
-                <p className="text-[10px] text-slate-400">Easy road access & family waiting</p>
+                <p className="text-[10px] text-slate-400">Street access & family comfort</p>
               </div>
             </div>
 
