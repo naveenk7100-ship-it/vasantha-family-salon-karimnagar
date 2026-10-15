@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0A0D14;
+    color: #F8FAFC;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Gold Accent Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0D14;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A344A;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Luxury Salon Background with Ambient Orbs */
+.salon-lux-bg {
+  background-color: #0A0D14;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(229, 195, 120, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(212, 175, 55, 0.07) 0%, transparent 55%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Glassmorphism Luxury Card */
+.salon-card {
+  background: rgba(18, 24, 36, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.salon-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -12px rgba(212, 175, 55, 0.18), 0 0 20px -5px rgba(0, 0, 0, 0.8);
+}
+
+/* Gold Gradient Shimmer Border */
+.gold-gradient-border {
+  position: relative;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.4) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(229, 195, 120, 0.3) 100%);
+  padding: 1px;
+}
+
+.gold-gradient-inner {
+  background: #0E131F;
+  border-radius: calc(1.25rem - 1px);
+}
+
+/* Gold Shimmer Button */
+.btn-gold {
+  background: linear-gradient(135deg, #E5C378 0%, #D4AF37 50%, #B89228 100%);
+  color: #0A0D14;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #F3D99A 0%, #E5C378 50%, #C49E32 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.45);
+}
+
+/* Gold Outline Button */
+.btn-gold-outline {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #E5C378;
+  background: rgba(212, 175, 55, 0.06);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.btn-gold-outline:hover {
+  border-color: #E5C378;
+  background: rgba(212, 175, 55, 0.15);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite;
+}
