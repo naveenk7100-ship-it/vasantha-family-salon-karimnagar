@@ -8,18 +8,18 @@ export interface ServiceItem {
   description: string;
   features: string[];
   recommendedFor: string;
+  image: string;
   customizable: boolean;
 }
 
-export interface PhotoRequirement {
+export interface GalleryItem {
   id: string;
   title: string;
-  aspectRatio: string;
-  resolution: string;
-  whyNeeded: string;
-  tips: string[];
-  sampleDescription: string;
-  uploadedUrl?: string;
+  teluguTitle?: string;
+  category: 'interior' | 'styling' | 'spa' | 'grooming' | 'bridal';
+  categoryLabel: string;
+  image: string;
+  description: string;
 }
 
 export interface BusinessDetails {
@@ -47,4 +47,13 @@ export interface AppointmentInquiry {
   genderPreference: 'men' | 'women' | 'any';
   notes: string;
   timestamp: string;
+}
+
+export interface ClientFeedback {
+  id: string;
+  name: string;
+  date: string;
+  service: string;
+  rating: number;
+  comment: string;
 }

@@ -1,39 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { PhotoKitSection } from './components/PhotoKitSection';
+import { AboutSection } from './components/AboutSection';
 import { ServiceCatalog } from './components/ServiceCatalog';
+import { GallerySection } from './components/GallerySection';
 import { ExperienceSection } from './components/ExperienceSection';
-import { BusinessVerificationCard } from './components/BusinessVerificationCard';
 import { ReviewsSection } from './components/ReviewsSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
 import { MobileActionBar } from './components/MobileActionBar';
 import { AppointmentModal } from './components/AppointmentModal';
-import { OwnerPhoneModal } from './components/OwnerPhoneModal';
+import { ImageLightboxModal } from './components/ImageLightboxModal';
 import { ReviewModal } from './components/ReviewModal';
+import { GalleryItem, ClientFeedback } from './types';
+import { GALLERY_ITEMS } from './data/salonData';
 
 export function App() {
   const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>([]);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [activeGalleryItem, setActiveGalleryItem] = useState<GalleryItem | null>(null);
 
-  // Local state persisted in localStorage
-  const [verifiedPhone, setVerifiedPhone] = useState<string>(() => {
-    return localStorage.getItem('vasantha_verified_phone') || '';
-  });
-
-  const [customPhotos, setCustomPhotos] = useState<Record<string, string>>(() => {
-    try {
-      const saved = localStorage.getItem('vasantha_custom_photos');
-      return saved ? JSON.parse(saved) : {};
-    } catch {
-      return {};
-    }
-  });
-
-  const [reviews, setReviews] = useState<any[]>(() => {
+  // Client feedback stored locally
+  const [reviews, setReviews] = useState<ClientFeedback[]>(() => {
     try {
       const saved = localStorage.getItem('vasantha_client_reviews');
       return saved ? JSON.parse(saved) : [];
@@ -48,39 +37,13 @@ export function App() {
     );
   };
 
-  const handlePhotoUpload = (id: string, url: string) => {
-    setCustomPhotos((prev) => {
-      const next = { ...prev };
-      if (url) {
-        next[id] = url;
-      } else {
-        delete next[id];
-      }
-      try {
-        localStorage.setItem('vasantha_custom_photos', JSON.stringify(next));
-      } catch (e) {
-        console.warn('Failed to save to localStorage:', e);
-      }
-      return next;
-    });
-  };
-
-  const handleSavePhone = (phone: string) => {
-    setVerifiedPhone(phone);
-    if (phone) {
-      localStorage.setItem('vasantha_verified_phone', phone);
-    } else {
-      localStorage.removeItem('vasantha_verified_phone');
-    }
-  };
-
   const handleAddReview = (newReview: {
     name: string;
     rating: number;
     service: string;
     comment: string;
   }) => {
-    const item = {
+    const item: ClientFeedback = {
       id: Date.now().toString(),
       ...newReview,
       date: new Date().toLocaleDateString('en-IN', {
@@ -92,59 +55,57 @@ export function App() {
 
     setReviews((prev) => {
       const next = [item, ...prev];
-      localStorage.setItem('vasantha_client_reviews', JSON.stringify(next));
+      try {
+        localStorage.setItem('vasantha_client_reviews', JSON.stringify(next));
+      } catch (e) {
+        console.warn(e);
+      }
       return next;
     });
   };
 
-  const scrollToPhotoKit = () => {
-    const el = document.getElementById('photo-kit');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  // Lightbox Navigation
+  const handlePrevPhoto = () => {
+    if (!activeGalleryItem) return;
+    const currentIndex = GALLERY_ITEMS.findIndex((item) => item.id === activeGalleryItem.id);
+    const prevIndex = (currentIndex - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+    setActiveGalleryItem(GALLERY_ITEMS[prevIndex]);
+  };
+
+  const handleNextPhoto = () => {
+    if (!activeGalleryItem) return;
+    const currentIndex = GALLERY_ITEMS.findIndex((item) => item.id === activeGalleryItem.id);
+    const nextIndex = (currentIndex + 1) % GALLERY_ITEMS.length;
+    setActiveGalleryItem(GALLERY_ITEMS[nextIndex]);
   };
 
   return (
     <div className="min-h-screen bg-[#0A0D14] text-slate-100 flex flex-col selection:bg-[#D4AF37]/30 selection:text-[#F3E5AB]">
-      {/* Top Navbar */}
-      <Navbar
-        onOpenBooking={() => setIsBookingOpen(true)}
-        onOpenPhotoKit={scrollToPhotoKit}
-        onOpenOwnerPhoneModal={() => setIsOwnerModalOpen(true)}
-        verifiedPhone={verifiedPhone}
-      />
+      {/* Top Fixed Navbar */}
+      <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
 
       {/* Main Page Flow */}
       <main className="flex-1">
         {/* Luxury Hero Section */}
-        <Hero
-          onOpenBooking={() => setIsBookingOpen(true)}
-          onOpenPhotoKit={scrollToPhotoKit}
-        />
+        <Hero onOpenBooking={() => setIsBookingOpen(true)} />
 
-        {/* Curated Service Catalog */}
+        {/* About Section */}
+        <AboutSection />
+
+        {/* Curated Service Catalog with Category Filtering & Real Imagery */}
         <ServiceCatalog
           selectedServiceIds={selectedServiceIds}
           onToggleService={handleToggleService}
           onOpenBooking={() => setIsBookingOpen(true)}
         />
 
-        {/* Photography & Media Kit (Prompt Requirement for authentic photos) */}
-        <PhotoKitSection
-          customPhotos={customPhotos}
-          onPhotoUpload={handlePhotoUpload}
-        />
+        {/* Real Photo Gallery with Lightbox Previews */}
+        <GallerySection onSelectPhoto={(item) => setActiveGalleryItem(item)} />
 
-        {/* The Vasantha Experience & Hygiene Pillars */}
+        {/* The Vasantha Experience & Hygiene Difference */}
         <ExperienceSection />
 
-        {/* Verified Business Information & Google Maps Transparency */}
-        <BusinessVerificationCard
-          verifiedPhone={verifiedPhone}
-          onOpenOwnerModal={() => setIsOwnerModalOpen(true)}
-        />
-
-        {/* Client Reviews & Community Feedback */}
+        {/* Quality Standards & Authentic Feedback */}
         <ReviewsSection
           onOpenReviewModal={() => setIsReviewModalOpen(true)}
           reviews={reviews}
@@ -155,34 +116,24 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <Footer
-        onOpenBooking={() => setIsBookingOpen(true)}
-        onOpenPhotoKit={scrollToPhotoKit}
-        onOpenOwnerPhoneModal={() => setIsOwnerModalOpen(true)}
-        verifiedPhone={verifiedPhone}
-      />
+      <Footer onOpenBooking={() => setIsBookingOpen(true)} />
 
-      {/* Mobile Sticky Bar */}
-      <MobileActionBar
-        onOpenBooking={() => setIsBookingOpen(true)}
-        onOpenPhotoKit={scrollToPhotoKit}
-        verifiedPhone={verifiedPhone}
-      />
+      {/* Mobile Sticky Action Bar */}
+      <MobileActionBar onOpenBooking={() => setIsBookingOpen(true)} />
 
-      {/* Modals */}
+      {/* Interactive Modals */}
       <AppointmentModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         selectedServiceIds={selectedServiceIds}
         onToggleService={handleToggleService}
-        verifiedPhone={verifiedPhone}
       />
 
-      <OwnerPhoneModal
-        isOpen={isOwnerModalOpen}
-        onClose={() => setIsOwnerModalOpen(false)}
-        currentPhone={verifiedPhone}
-        onSavePhone={handleSavePhone}
+      <ImageLightboxModal
+        item={activeGalleryItem}
+        onClose={() => setActiveGalleryItem(null)}
+        onPrev={handlePrevPhoto}
+        onNext={handleNextPhoto}
       />
 
       <ReviewModal

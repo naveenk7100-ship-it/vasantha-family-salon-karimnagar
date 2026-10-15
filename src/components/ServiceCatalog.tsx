@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../data/salonData';
 import { ServiceItem } from '../types';
-import { Clock, Plus, Check, Sparkles, Scissors, Info, ArrowRight } from 'lucide-react';
+import { Clock, Plus, Check, Sparkles, Scissors, Info, ArrowRight, Eye } from 'lucide-react';
 
 interface ServiceCatalogProps {
   selectedServiceIds: string[];
@@ -17,10 +17,10 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'All Rituals' },
+    { id: 'all', label: 'All Services' },
     { id: 'grooming', label: "Men's Grooming" },
     { id: 'hair', label: "Women's Styling" },
-    { id: 'spa', label: 'Hair Spa & Repair' },
+    { id: 'spa', label: 'Hair Spa & Scalp' },
     { id: 'skin', label: 'Facials & De-Tan' },
     { id: 'kids', label: 'Kids Haircuts' },
     { id: 'bridal', label: 'Bridal & Occasion' },
@@ -38,7 +38,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-xs font-semibold text-[#E5C378]">
             <Scissors className="w-3.5 h-3.5" />
-            <span>Family Care Menu</span>
+            <span>Complete Care Menu</span>
           </div>
 
           <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
@@ -52,7 +52,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
           {/* Transparent Pricing Disclaimer Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-400">
             <Info className="w-4 h-4 text-[#E5C378] shrink-0" />
-            <span>Transparent Consultation: Final service quotation is confirmed in-salon based on hair length, density, and customized styling needs.</span>
+            <span>Personalized Consultation: Service pricing is finalized in-salon based on hair length, density, and customized styling needs.</span>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
           })}
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid with Real Imagery */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {filteredServices.map((service) => {
             const isSelected = selectedServiceIds.includes(service.id);
@@ -84,67 +84,81 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
             return (
               <div
                 key={service.id}
-                className={`salon-card p-6 flex flex-col justify-between transition-all duration-300 ${
-                  isSelected ? 'border-[#D4AF37] ring-1 ring-[#D4AF37]/40 bg-[#141C2B]' : ''
+                className={`salon-card overflow-hidden flex flex-col justify-between transition-all duration-300 group ${
+                  isSelected ? 'border-[#D4AF37] ring-1 ring-[#D4AF37]/50 bg-[#141C2B]' : ''
                 }`}
               >
                 <div>
-                  {/* Category & Duration header */}
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-                    <span className="text-[11px] font-bold text-[#E5C378] uppercase tracking-wider">
-                      {service.categoryLabel}
-                    </span>
-                    <span className="text-xs text-slate-400 flex items-center gap-1 bg-slate-900 px-2 py-0.5 rounded-md border border-slate-800">
-                      <Clock className="w-3 h-3 text-[#D4AF37]" />
-                      ~{service.durationMinutes} mins
-                    </span>
+                  {/* Service Photo Header */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-106"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#10141E] via-transparent to-transparent opacity-90" />
+
+                    {/* Category & Duration Badge */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                      <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-[#0E131F]/90 text-[#E5C378] border border-[#D4AF37]/30 backdrop-blur-md uppercase tracking-wider">
+                        {service.categoryLabel}
+                      </span>
+                      <span className="text-[11px] font-semibold text-slate-200 flex items-center gap-1 bg-[#0E131F]/90 px-2 py-0.5 rounded-md border border-slate-700 backdrop-blur-md">
+                        <Clock className="w-3 h-3 text-[#D4AF37]" />
+                        ~{service.durationMinutes} mins
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Title */}
-                  <div className="mt-3">
-                    <h3 className="font-serif-luxury text-xl font-bold text-white group-hover:text-[#E5C378] transition-colors">
-                      {service.name}
-                    </h3>
-                    {service.teluguName && (
-                      <p className="text-xs font-medium text-[#D4AF37] mt-0.5">
-                        {service.teluguName}
-                      </p>
-                    )}
-                  </div>
+                  {/* Card Body */}
+                  <div className="p-5 space-y-3 text-left">
+                    {/* Title */}
+                    <div>
+                      <h3 className="font-serif-luxury text-xl font-bold text-white group-hover:text-[#E5C378] transition-colors">
+                        {service.name}
+                      </h3>
+                      {service.teluguName && (
+                        <p className="text-xs font-medium text-[#D4AF37] mt-0.5">
+                          {service.teluguName}
+                        </p>
+                      )}
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-xs text-slate-300 mt-2.5 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Key Features List */}
-                  <div className="mt-4 pt-3 border-t border-slate-800/60 space-y-1.5">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Includes:
+                    {/* Description */}
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      {service.description}
                     </p>
-                    {service.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
 
-                  {/* Recommendation pill */}
-                  <div className="mt-4 p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400">
-                    <span className="font-semibold text-slate-200">Ideal For:</span> {service.recommendedFor}
+                    {/* Key Features List */}
+                    <div className="pt-2 border-t border-slate-800/80 space-y-1.5">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        Service Includes:
+                      </p>
+                      {service.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] mt-1.5 shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Recommendation pill */}
+                    <div className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400">
+                      <span className="font-semibold text-slate-200">Ideal For:</span> {service.recommendedFor}
+                    </div>
                   </div>
                 </div>
 
-                {/* Card Action */}
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <div className="text-[11px] text-slate-400">
-                    <span className="text-white font-semibold">Pricing:</span> In-Salon Consultation
+                {/* Card Action Footer */}
+                <div className="p-5 pt-0 flex items-center justify-between">
+                  <div className="text-[11px] text-slate-400 text-left">
+                    <span className="text-white font-semibold">Pricing:</span> In-Salon Consult
                   </div>
 
                   <button
                     onClick={() => onToggleService(service.id)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                       isSelected
                         ? 'bg-emerald-500 text-slate-950 font-extrabold shadow-sm'
                         : 'bg-slate-800 hover:bg-[#D4AF37]/20 text-[#E5C378] border border-[#D4AF37]/30'
@@ -153,7 +167,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
                     {isSelected ? (
                       <>
                         <Check className="w-3.5 h-3.5" />
-                        Added
+                        Selected
                       </>
                     ) : (
                       <>
@@ -168,7 +182,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
           })}
         </div>
 
-        {/* Selected Services Sticky / Summary Floating Box */}
+        {/* Selected Services Floating Summary Bar */}
         {selectedServiceIds.length > 0 && (
           <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-xl p-4 rounded-2xl bg-[#0E131F]/95 backdrop-blur-xl border border-[#D4AF37]/50 shadow-2xl shadow-black flex items-center justify-between gap-4 animate-fadeIn">
             <div>
@@ -177,7 +191,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
                 {selectedServiceIds.length} Service{selectedServiceIds.length > 1 ? 's' : ''} Selected
               </p>
               <p className="text-[11px] text-slate-400">
-                Ready to reserve your time slot in Karimnagar
+                Ready to schedule your appointment in Karimnagar
               </p>
             </div>
 
