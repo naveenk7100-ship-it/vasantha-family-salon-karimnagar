@@ -183,34 +183,34 @@ export const SERVICES: ServiceItem[] = [
   }
 ];
 
-/* 9 Completely Unique Gallery Images (No overlap with Services, Hero, or About) */
+/* 9 Completely Unique Gallery Images (Authentic Tour Captures & Professional Styling) */
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "gallery-1",
-    title: "Modern Styling Stations",
-    teluguTitle: "స్టైలింగ్ స్టేషన్స్",
+    title: "Reception & Welcoming Lounge",
+    teluguTitle: "సెలూన్ రిసెప్షన్ & లాంజ్",
     category: "interior",
-    categoryLabel: "Salon Interior",
-    image: getImgUrl("gallery-styling-chairs.jpg"),
-    description: "Hydraulic designer chairs, expansive illuminated mirrors, and spacious styling bays designed for relaxed personal attention."
+    categoryLabel: "Tour Capture",
+    image: getImgUrl("tour-reception-desk.jpg"),
+    description: "Authentic salon interior walkthrough capture: Front reception counter, modern geometric design, and welcoming family hospitality."
   },
   {
     id: "gallery-2",
-    title: "Reclining Shampoo & Spa Lounge",
+    title: "Reclining Shampoo & Spa Wash Lounge",
     teluguTitle: "హెయిర్ వాష్ & స్పా లాంజ్",
     category: "spa",
-    categoryLabel: "Hair Spa",
-    image: getImgUrl("gallery-wash-lounge.jpg"),
-    description: "Ergonomic wash basins with gentle water pressure control and soothing ambient lighting for restful hair wash rituals."
+    categoryLabel: "Tour Capture",
+    image: getImgUrl("tour-wash-lounge.jpg"),
+    description: "Authentic salon interior walkthrough capture: Ergonomic wash basins with gentle water pressure control and soothing ambient decor."
   },
   {
     id: "gallery-3",
-    title: "Artisan Haircut & Volumizing Blowout",
-    teluguTitle: "మహిళల హెయిర్ స్టైలింగ్",
-    category: "styling",
-    categoryLabel: "Hair Styling",
-    image: getImgUrl("gallery-blowout-styling.jpg"),
-    description: "Precision shear feathering, texture balancing, and bouncy thermal blowouts tailored to individual face geometry."
+    title: "Private Aesthetic & Beauty Suite",
+    teluguTitle: "బ్యూటీ & ఫేషియల్ సూట్",
+    category: "spa",
+    categoryLabel: "Tour Capture",
+    image: getImgUrl("tour-facial-suite.jpg"),
+    description: "Authentic salon interior walkthrough capture: Dedicated private treatment suite with chandelier, ring light, and comfortable skincare setup."
   },
   {
     id: "gallery-4",
@@ -223,6 +223,15 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "gallery-5",
+    title: "Artisan Haircut & Volumizing Blowout",
+    teluguTitle: "మహిళల హెయిర్ స్టైలింగ్",
+    category: "styling",
+    categoryLabel: "Hair Styling",
+    image: getImgUrl("gallery-blowout-styling.jpg"),
+    description: "Precision shear feathering, texture balancing, and bouncy thermal blowouts tailored to individual face geometry."
+  },
+  {
+    id: "gallery-6",
     title: "Creative Balayage & Foil Highlights",
     teluguTitle: "క్రియేటివ్ హెయిర్ కలర్",
     category: "styling",
@@ -231,22 +240,13 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     description: "Expert foil placement, seamless color transitions, and conditioning toners that preserve natural hair vitality."
   },
   {
-    id: "gallery-6",
+    id: "gallery-7",
     title: "Deep Follicle Scalp Therapy",
     teluguTitle: "డీప్ కండిషనింగ్ స్పా",
     category: "spa",
     categoryLabel: "Hair Spa",
     image: getImgUrl("gallery-scalp-spa.jpg"),
     description: "Intense argan and keratin scalp rejuvenation that hydrates dry, frizzy strands and promotes scalp wellness."
-  },
-  {
-    id: "gallery-7",
-    title: "Private Aesthetic Skin Treatment Suite",
-    teluguTitle: "స్కిన్ & ఫేషియల్ కేర్",
-    category: "spa",
-    categoryLabel: "Skin Suite",
-    image: getImgUrl("gallery-facial-suite.jpg"),
-    description: "Private aesthetic treatment suite for deep pore cleansing, botanical masks, and ultrasonic skin smoothing."
   },
   {
     id: "gallery-8",
@@ -259,7 +259,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "gallery-9",
-    title: "Sterilized Professional Shear Toolkit",
+    title: "Sanitized Professional Shear Toolkit",
     teluguTitle: "పరిశుభ్రమైన ఉపకరణాలు",
     category: "interior",
     categoryLabel: "Care Standard",

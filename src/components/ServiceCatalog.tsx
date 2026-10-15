@@ -119,7 +119,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
                         {service.name}
                       </h3>
                       {service.teluguName && (
-                        <p className="text-xs font-medium text-[#D4AF37] mt-0.5">
+                        <p className="font-telugu text-xs font-semibold text-[#D4AF37] mt-0.5">
                           {service.teluguName}
                         </p>
                       )}

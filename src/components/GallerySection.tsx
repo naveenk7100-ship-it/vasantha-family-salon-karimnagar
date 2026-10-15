@@ -107,7 +107,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
                     </h3>
                   </div>
                   {item.teluguTitle && (
-                    <p className="text-[11px] text-[#D4AF37] font-medium mt-0.5">
+                    <p className="font-telugu text-xs font-semibold text-[#D4AF37] mt-0.5">
                       {item.teluguTitle}
                     </p>
                   )}

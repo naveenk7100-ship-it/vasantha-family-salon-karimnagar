@@ -43,7 +43,7 @@ export const LocationSection: React.FC = () => {
                 <h3 className="font-serif-luxury text-2xl font-bold text-white">
                   Vasantha Family Salon
                 </h3>
-                <p className="text-xs text-[#D4AF37] font-semibold">
+                <p className="font-telugu text-sm text-[#D4AF37] font-semibold">
                   వసంత ఫ్యామిలీ సెలూన్ • కరీంనగర్
                 </p>
                 <p className="text-sm text-slate-300 flex items-start gap-2 pt-2">

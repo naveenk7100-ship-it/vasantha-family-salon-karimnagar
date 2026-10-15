@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 <h3 className="font-serif-luxury text-lg font-bold text-white">
                   Vasantha Family Salon
                 </h3>
-                <p className="text-[11px] text-[#E5C378]">వసంత ఫ్యామిలీ సెలూన్</p>
+                <p className="font-telugu text-xs text-[#E5C378]">వసంత ఫ్యామిలీ సెలూన్</p>
               </div>
             </div>
 

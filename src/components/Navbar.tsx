@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Scissors, MapPin, Calendar, Camera, Menu, X, ShieldCheck, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Scissors, MapPin, Calendar, Menu, X, Play, Image as ImageIcon } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/salonData';
 
 interface NavbarProps {
   onOpenBooking: () => void;
+  onOpenTour?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenTour }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -53,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className="hidden lg:flex items-center gap-6">
             <a
               href="#about"
               className="text-sm font-medium text-slate-300 hover:text-[#E5C378] transition-colors"
@@ -71,8 +72,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               className="text-sm font-medium text-slate-300 hover:text-[#E5C378] transition-colors flex items-center gap-1.5"
             >
               <ImageIcon className="w-3.5 h-3.5 text-[#D4AF37]" />
-              Photo Gallery
+              Gallery
             </a>
+            {onOpenTour && (
+              <button
+                type="button"
+                onClick={onOpenTour}
+                className="text-sm font-medium text-[#E5C378] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                Video Tour
+              </button>
+            )}
             <a
               href="#experience"
               className="text-sm font-medium text-slate-300 hover:text-[#E5C378] transition-colors"
@@ -108,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
             <button
               onClick={onOpenBooking}
-              className="btn-gold px-5 py-2 rounded-xl text-xs font-bold tracking-wide flex items-center gap-2 cursor-pointer shadow-md"
+              className="btn-gold px-5 py-2 rounded-xl text-xs font-bold tracking-wide flex items-center gap-2 cursor-pointer shadow-md hover:scale-105 transition-transform"
             >
               <Calendar className="w-3.5 h-3.5" />
               Book Appointment
@@ -158,8 +169,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               className="px-3 py-2 rounded-lg text-slate-200 hover:bg-[#D4AF37]/10 hover:text-[#E5C378] font-medium text-sm flex items-center justify-between"
             >
               <span>Photo Gallery</span>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#E5C378]">Visual Tour</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#E5C378]">Captures</span>
             </a>
+            {onOpenTour && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenTour();
+                }}
+                className="px-3 py-2 rounded-lg text-[#E5C378] hover:bg-[#D4AF37]/10 font-medium text-sm flex items-center justify-between text-left cursor-pointer"
+              >
+                <span className="flex items-center gap-2">
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  Watch Video Tour
+                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Live</span>
+              </button>
+            )}
             <a
               href="#experience"
               onClick={() => setMobileMenuOpen(false)}

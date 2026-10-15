@@ -92,7 +92,7 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
               {item.title}
             </h3>
             {item.teluguTitle && (
-              <span className="text-xs text-[#E5C378] font-medium">
+              <span className="font-telugu text-sm text-[#E5C378] font-semibold">
                 {item.teluguTitle}
               </span>
             )}

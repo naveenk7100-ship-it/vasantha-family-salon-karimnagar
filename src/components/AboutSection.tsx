@@ -1,8 +1,12 @@
 import React from 'react';
-import { Scissors, ShieldCheck, Heart, Sparkles, Clock, Users } from 'lucide-react';
+import { Scissors, ShieldCheck, Heart, Sparkles, Clock, Users, Play } from 'lucide-react';
 import { getImgUrl } from '../data/salonData';
 
-export const AboutSection: React.FC = () => {
+interface AboutSectionProps {
+  onOpenTour?: () => void;
+}
+
+export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTour }) => {
   return (
     <section id="about" className="py-24 relative bg-[#0D121D] border-t border-slate-800 overflow-hidden">
       {/* Decorative ambient illumination */}
@@ -11,16 +15,16 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
-          {/* Left Column: Image Composition with 2 completely distinct images */}
+          {/* Left Column: Image Composition with authentic interior capture and craft detail */}
           <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-lg lg:max-w-none">
               
-              {/* Primary Large Image */}
+              {/* Primary Large Image: Authentic Walkthrough Interior */}
               <div className="gold-gradient-border shadow-2xl rounded-2xl overflow-hidden">
                 <div className="gold-gradient-inner p-2 rounded-2xl">
                   <img
-                    src={getImgUrl('about-salon-ambience.jpg')}
-                    alt="Vasantha Family Salon Welcoming Lounge & Interior"
+                    src={getImgUrl('tour-salon-interior.jpg')}
+                    alt="Vasantha Family Salon Authentic Styling Stations & Interior in Karimnagar"
                     className="w-full h-[360px] sm:h-[420px] object-cover rounded-xl"
                     loading="lazy"
                   />
@@ -55,13 +59,26 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Column: Narrative Story */}
           <div className="lg:col-span-6 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-xs font-semibold text-[#E5C378]">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Our Story & Philosophy</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-xs font-semibold text-[#E5C378]">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Our Story & Philosophy</span>
+              </div>
+
+              {onOpenTour && (
+                <button
+                  type="button"
+                  onClick={onOpenTour}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 border border-[#D4AF37]/40 text-xs font-semibold text-slate-200 hover:text-white hover:border-[#E5C378] transition-colors cursor-pointer"
+                >
+                  <Play className="w-3 h-3 text-[#E5C378] fill-current" />
+                  <span>Virtual Video Tour</span>
+                </button>
+              )}
             </div>
 
             <div className="space-y-2">
-              <p className="text-xs font-bold text-[#D4AF37] tracking-wider uppercase">
+              <p className="font-telugu text-sm font-bold text-[#D4AF37] tracking-wider">
                 వసంత ఫ్యామిలీ సెలూన్ పరిచయం
               </p>
               <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">

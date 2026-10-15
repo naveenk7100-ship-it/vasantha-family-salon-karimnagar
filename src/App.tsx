@@ -12,6 +12,7 @@ import { MobileActionBar } from './components/MobileActionBar';
 import { AppointmentModal } from './components/AppointmentModal';
 import { ImageLightboxModal } from './components/ImageLightboxModal';
 import { ReviewModal } from './components/ReviewModal';
+import { IntroVideoOverlay } from './components/IntroVideoOverlay';
 import { GalleryItem, ClientFeedback } from './types';
 import { GALLERY_ITEMS } from './data/salonData';
 
@@ -20,6 +21,22 @@ export function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [activeGalleryItem, setActiveGalleryItem] = useState<GalleryItem | null>(null);
+
+  // Cinematic Intro Video Overlay state with reduced-motion check and session memory
+  const [isIntroOpen, setIsIntroOpen] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return false;
+        const alreadySeen = sessionStorage.getItem('vasantha_intro_seen');
+        if (alreadySeen === 'true') return false;
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  });
 
   // Client feedback stored locally
   const [reviews, setReviews] = useState<ClientFeedback[]>(() => {
@@ -82,15 +99,21 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#0A0D14] text-slate-100 flex flex-col selection:bg-[#D4AF37]/30 selection:text-[#F3E5AB]">
       {/* Top Fixed Navbar */}
-      <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
+      <Navbar
+        onOpenBooking={() => setIsBookingOpen(true)}
+        onOpenTour={() => setIsIntroOpen(true)}
+      />
 
       {/* Main Page Flow */}
       <main className="flex-1">
         {/* Luxury Hero Section */}
-        <Hero onOpenBooking={() => setIsBookingOpen(true)} />
+        <Hero
+          onOpenBooking={() => setIsBookingOpen(true)}
+          onOpenTour={() => setIsIntroOpen(true)}
+        />
 
         {/* About Section */}
-        <AboutSection />
+        <AboutSection onOpenTour={() => setIsIntroOpen(true)} />
 
         {/* Curated Service Catalog with Category Filtering & Real Imagery */}
         <ServiceCatalog
@@ -140,6 +163,12 @@ export function App() {
         isOpen={isReviewModalOpen}
         onClose={() => setIsReviewModalOpen(false)}
         onSubmitReview={handleAddReview}
+      />
+
+      {/* Cinematic Intro Video Overlay */}
+      <IntroVideoOverlay
+        isOpen={isIntroOpen}
+        onClose={() => setIsIntroOpen(false)}
       />
     </div>
   );

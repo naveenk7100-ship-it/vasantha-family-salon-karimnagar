@@ -15,7 +15,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
   const standards = [
     {
       title: "Zero-Compromise Hygiene",
-      desc: "Every scissor, trimmer blade, and comb undergoes multi-stage UV & autoclave sterilization between each guest."
+      desc: "Every scissor, trimmer blade, and comb undergoes thorough sanitization and cleansing between each guest."
     },
     {
       title: "Personalized Consultation",

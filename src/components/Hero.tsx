@@ -1,12 +1,13 @@
 import React from 'react';
-import { Calendar, MapPin, Sparkles, Scissors, Users, HeartHandshake, ShieldCheck, ArrowRight, Clock } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, Scissors, Users, ShieldCheck, ArrowRight, Play } from 'lucide-react';
 import { BUSINESS_INFO, getImgUrl } from '../data/salonData';
 
 interface HeroProps {
   onOpenBooking: () => void;
+  onOpenTour?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onOpenTour }) => {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden salon-lux-bg">
       {/* Decorative ambient illumination */}
@@ -30,8 +31,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               </span>
             </div>
 
-            {/* Telugu Sub-title */}
-            <p className="text-sm md:text-base font-semibold text-[#D4AF37] tracking-wider uppercase">
+            {/* Telugu Sub-title with specialized Telugu Typography */}
+            <p className="font-telugu text-sm md:text-base font-semibold text-[#D4AF37] tracking-wider">
               వసంత ఫ్యామిలీ సెలూన్ • కరీంనగర్
             </p>
 
@@ -46,31 +47,42 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
               <button
                 onClick={onOpenBooking}
-                className="btn-gold px-7 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2.5 cursor-pointer shadow-lg shadow-[#D4AF37]/25"
+                className="btn-gold px-6 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2.5 cursor-pointer shadow-lg shadow-[#D4AF37]/25 hover:scale-105 transition-transform"
               >
                 <Calendar className="w-4 h-4" />
-                Book Your Appointment
+                Book Appointment
                 <ArrowRight className="w-4 h-4" />
               </button>
 
+              {onOpenTour && (
+                <button
+                  type="button"
+                  onClick={onOpenTour}
+                  className="btn-gold-outline px-5 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-2 cursor-pointer hover:border-[#E5C378] transition-colors"
+                >
+                  <Play className="w-4 h-4 text-[#E5C378] fill-current" />
+                  Watch Salon Tour
+                </button>
+              )}
+
               <a
                 href="#services"
-                className="btn-gold-outline px-6 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3.5 rounded-xl text-sm font-semibold text-slate-200 hover:text-white bg-slate-900/80 border border-slate-800 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-2 cursor-pointer"
               >
-                <Scissors className="w-4 h-4" />
-                Explore Services
+                <Scissors className="w-4 h-4 text-[#D4AF37]" />
+                Explore Menu
               </a>
 
               <a
                 href={BUSINESS_INFO.googleMapsSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/80 border border-slate-800 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-2 cursor-pointer"
+                className="px-4 py-3.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/60 border border-slate-800 hover:border-[#D4AF37]/40 transition-colors flex items-center gap-1.5 cursor-pointer"
               >
-                <MapPin className="w-4 h-4 text-[#D4AF37]" />
+                <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
                 Google Maps
               </a>
             </div>
